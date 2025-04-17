@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Client/Client.iml" filepath="$PROJECT_DIR$/Client/Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sprint2/Client/Client.iml" filepath="$PROJECT_DIR$/Sprint2/Client/Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SEP2_Group4.iml" filepath="$PROJECT_DIR$/.idea/SEP2_Group4.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Shared/Shared.iml" filepath="$PROJECT_DIR$/Shared/Shared.iml" />
-      <module fileurl="file://$PROJECT_DIR$/UnitTest/UnitTest.iml" filepath="$PROJECT_DIR$/UnitTest/UnitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sprint2/Server/Server.iml" filepath="$PROJECT_DIR$/Sprint2/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sprint2/Shared/Shared.iml" filepath="$PROJECT_DIR$/Sprint2/Shared/Shared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sprint1/Sprint1.iml" filepath="$PROJECT_DIR$/Sprint1/Sprint1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sprint2/Sprint2.iml" filepath="$PROJECT_DIR$/Sprint2/Sprint2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sprint2/UnitTest/UnitTest.iml" filepath="$PROJECT_DIR$/Sprint2/UnitTest/UnitTest.iml" />
     </modules>
   </component>
 </project>
