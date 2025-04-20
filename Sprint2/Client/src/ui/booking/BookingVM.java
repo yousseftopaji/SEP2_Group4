@@ -18,9 +18,8 @@ public class BookingVM
   private StringProperty errorMsg;
   private PropertyListModel bookingModel;
 
-  public BookingVM(PropertyListModel bookingModel)
+  public BookingVM()
   {
-    this.bookingModel = bookingModel;
     propertyID = new SimpleIntegerProperty();
     location = new SimpleStringProperty();
     propertyFacilities = new SimpleStringProperty();

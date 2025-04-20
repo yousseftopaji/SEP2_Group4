@@ -1,11 +1,13 @@
 package model;
 
-import java.util.Date;
-import java.util.List;
+import Observer.PropertyChangeSubject;
 
-public interface PropertyListModel
+import java.sql.SQLException;
+import java.sql.Date;
+
+public interface PropertyListModel extends PropertyChangeSubject
 {
     Property getByID(int id);
     boolean isAvailable(Date startDate, Date endDate, int id);
-    List<Property> getAllProperties();
+    void getAvailableProperties(Date startDate, Date endDate) throws SQLException;
 }

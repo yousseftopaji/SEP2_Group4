@@ -1,0 +1,614 @@
+[06/04/2025 09:28:35] [IP: SYSTEM] Logger initialized for file: server_2025_04_06.log
+[06/04/2025 09:28:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:28:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:28:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAllVinyls"
+}
+[06/04/2025 09:28:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: Listener"
+}
+[06/04/2025 09:28:35] [IP: 127.0.0.1] {
+  "type": "listener",
+  "content": "Client registered as listener"
+}
+[06/04/2025 09:28:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:28:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 09:28:52] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:28:52] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: Listener"
+}
+[06/04/2025 09:28:52] [IP: 127.0.0.1] {
+  "type": "listener",
+  "content": "Client registered as listener"
+}
+[06/04/2025 09:28:52] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:28:52] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAllVinyls"
+}
+[06/04/2025 09:28:52] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:28:52] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 09:29:58] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:29:58] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: checkUser"
+}
+[06/04/2025 09:30:03] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:03] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: login"
+}
+[06/04/2025 09:30:03] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:03] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 09:30:03] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:03] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 09:30:03] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:03] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 09:30:17] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:17] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 09:30:17] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: DW by DWA (Owner: 1)"
+}
+[06/04/2025 09:30:17] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: DW by DWA (Owner: 1)"
+}
+[06/04/2025 09:30:26] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:26] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 09:30:26] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: WW by AA (Owner: 1)"
+}
+[06/04/2025 09:30:26] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: WW by AA (Owner: 1)"
+}
+[06/04/2025 09:30:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 09:30:35] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: DW by DWA (Owner: 1, Borrowed by: 1)"
+}
+[06/04/2025 09:30:35] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: DW by DWA (Owner: 1, Borrowed by: 1)"
+}
+[06/04/2025 09:30:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 09:30:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 09:30:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 09:30:35] [IP: 127.0.0.1] New client connection established
+[06/04/2025 09:30:35] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:03:50] [IP: SYSTEM] Logger initialized for file: server_2025_04_06.log
+[06/04/2025 10:03:50] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:03:50] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:03:50] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: Listener"
+}
+[06/04/2025 10:03:50] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAllVinyls"
+}
+[06/04/2025 10:03:50] [IP: 127.0.0.1] {
+  "type": "listener",
+  "content": "Client registered as listener"
+}
+[06/04/2025 10:03:50] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:03:50] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:03:55] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:03:55] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: checkUser"
+}
+[06/04/2025 10:04:00] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:00] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: login"
+}
+[06/04/2025 10:04:00] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:00] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:04:00] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:00] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:04:00] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:00] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:04:07] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:07] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 10:04:07] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: qq by qq (Owner: 1)"
+}
+[06/04/2025 10:04:17] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:17] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 10:04:17] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: dd by ww (Owner: 1)"
+}
+[06/04/2025 10:04:21] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:21] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 10:04:21] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: ss by ss (Owner: 1)"
+}
+[06/04/2025 10:04:25] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:25] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 10:04:25] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: dd by ww (Owner: 1, Borrowed by: 1)"
+}
+[06/04/2025 10:04:25] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:25] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:04:25] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:25] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:04:25] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:25] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:04:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: returnVinyl"
+}
+[06/04/2025 10:04:29] [IP: 127.0.0.1] {
+  "type": "vinylReturned",
+  "content": "Vinyl returned: dd by ww (Owner: 1)"
+}
+[06/04/2025 10:04:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:04:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:04:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:04:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 10:04:32] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: ss by ss (Owner: 1, Borrowed by: 1)"
+}
+[06/04/2025 10:04:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:04:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:04:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:04:50] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:50] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: returnVinyl"
+}
+[06/04/2025 10:04:50] [IP: 127.0.0.1] {
+  "type": "vinylReturned",
+  "content": "Vinyl returned: ss by ss (Owner: 1)"
+}
+[06/04/2025 10:04:50] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:50] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:04:50] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:50] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:04:50] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:50] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:04:54] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:54] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 10:04:54] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: dd by ww (Owner: 1, Borrowed by: 1)"
+}
+[06/04/2025 10:04:54] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:54] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:04:54] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:54] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:04:54] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:04:54] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:28:03] [IP: SYSTEM] Logger initialized for file: server_2025_04_06.log
+[06/04/2025 10:28:03] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:03] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:03] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAllVinyls"
+}
+[06/04/2025 10:28:03] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: Listener"
+}
+[06/04/2025 10:28:03] [IP: 127.0.0.1] {
+  "type": "listener",
+  "content": "Client registered as listener"
+}
+[06/04/2025 10:28:03] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:03] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:28:09] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:09] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: checkUser"
+}
+[06/04/2025 10:28:13] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:13] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: login"
+}
+[06/04/2025 10:28:14] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:14] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:28:14] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:14] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:28:14] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:14] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:28:16] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:16] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 10:28:21] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:21] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 10:28:21] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: 22 by 22 (Owner: 2)"
+}
+[06/04/2025 10:28:24] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:24] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 10:28:24] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: 22 by 22 (Owner: 2, Borrowed by: 2)"
+}
+[06/04/2025 10:28:24] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:24] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:28:24] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:24] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:28:24] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:24] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:28:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: returnVinyl"
+}
+[06/04/2025 10:28:29] [IP: 127.0.0.1] {
+  "type": "vinylReturned",
+  "content": "Vinyl returned: 22 by 22 (Owner: 2)"
+}
+[06/04/2025 10:28:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:28:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:28:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:28:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 10:28:32] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: 22 by 22 (Owner: 2, Borrowed by: 2)"
+}
+[06/04/2025 10:28:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:28:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:28:32] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:28:32] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:36:16] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:16] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: Listener"
+}
+[06/04/2025 10:36:16] [IP: 127.0.0.1] {
+  "type": "listener",
+  "content": "Client registered as listener"
+}
+[06/04/2025 10:36:16] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:16] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAllVinyls"
+}
+[06/04/2025 10:36:16] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:16] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:36:21] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:21] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: checkUser"
+}
+[06/04/2025 10:36:27] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:27] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: login"
+}
+[06/04/2025 10:36:27] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:27] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 10:36:27] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:27] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 10:36:27] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:27] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 10:36:34] [IP: 127.0.0.1] New client connection established
+[06/04/2025 10:36:34] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 10:36:34] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: 12 by 12 (Owner: 2)"
+}
+[06/04/2025 10:36:34] [IP: 127.0.0.1] {
+  "type": "error",
+  "message": "Error sending vinyl added event: Connection reset by peer"
+}
+[06/04/2025 11:21:00] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:00] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:00] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: Listener"
+}
+[06/04/2025 11:21:00] [IP: 127.0.0.1] {
+  "type": "listener",
+  "content": "Client registered as listener"
+}
+[06/04/2025 11:21:00] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAllVinyls"
+}
+[06/04/2025 11:21:00] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:00] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 11:21:06] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:06] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: checkUser"
+}
+[06/04/2025 11:21:10] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:10] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: login"
+}
+[06/04/2025 11:21:11] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:11] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 11:21:11] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:11] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 11:21:11] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:11] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 11:21:15] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:21:15] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: addVinyl"
+}
+[06/04/2025 11:21:15] [IP: 127.0.0.1] {
+  "type": "vinylAdded",
+  "content": "Vinyl added: 33 by 33 (Owner: 3)"
+}
+[06/04/2025 11:21:15] [IP: 127.0.0.1] {
+  "type": "error",
+  "message": "Error sending vinyl added event: Connection reset by peer"
+}
+[06/04/2025 11:22:02] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:02] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: Listener"
+}
+[06/04/2025 11:22:02] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:02] [IP: 127.0.0.1] {
+  "type": "listener",
+  "content": "Client registered as listener"
+}
+[06/04/2025 11:22:02] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAllVinyls"
+}
+[06/04/2025 11:22:02] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:02] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 11:22:06] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:06] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: checkUser"
+}
+[06/04/2025 11:22:14] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:14] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: login"
+}
+[06/04/2025 11:22:14] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:14] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getMyVinyls"
+}
+[06/04/2025 11:22:14] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:14] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getBorrowedVinyls"
+}
+[06/04/2025 11:22:14] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:14] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: getAvailableVinyls"
+}
+[06/04/2025 11:22:29] [IP: 127.0.0.1] New client connection established
+[06/04/2025 11:22:29] [IP: 127.0.0.1] {
+  "type": "request",
+  "content": "Received request: borrowVinyl"
+}
+[06/04/2025 11:22:29] [IP: 127.0.0.1] {
+  "type": "vinylBorrowed",
+  "content": "Vinyl borrowed: 12 by 12 (Owner: 2, Borrowed by: 4)"
+}
+

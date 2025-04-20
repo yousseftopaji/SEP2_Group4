@@ -1,27 +1,24 @@
 package model;
 
+import persistence.daos.properties.PropertyDAO;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 public class PropertyListModelManager implements PropertyListModel
 {
-  private final ArrayList<Property> properties;
+  private ArrayList<Property> properties = new ArrayList<>();
+  private PropertyDAO propertyDAO;
+  private PropertyChangeSupport support;
 
-  public PropertyListModelManager()
+  public PropertyListModelManager(PropertyDAO propertyDAO)
   {
-    this.properties = new ArrayList<>();
-    // Initialize with some sample properties
-    properties.add(new Property(0, "Vejle", 150.0, true,
-        new Facilities(true, true, true, false, false)));
-    properties.add(new Property(1, "Horsens", 200.0, true,
-        new Facilities(true, true, true, true, true)));
-    properties.add(new Property(2, "Aarhus", 120.0, true,
-        new Facilities(true, true, false, false, false)));
-    properties.add(new Property(3, "Aalborg", 180.0, true,
-        new Facilities(true, true, false, true, true)));
-    properties.add(new Property(4, "Copenhagen", 250.0, true,
-        new Facilities(true, true, true, true, false)));
+    this.propertyDAO = propertyDAO;
+    this.support = new PropertyChangeSupport(this);
+    this.support = new PropertyChangeSupport(this);
   }
 
   @Override public Property getByID(int id)
@@ -35,13 +32,52 @@ public class PropertyListModelManager implements PropertyListModel
     Property property = getByID(id);
     if (property != null)
     {
-      return property.getAvailability();
+//      TODO : Remove the available method from the Property class
     }
     return false;
   }
 
-  public List<Property> getAllProperties()
+  public void getAvailableProperties(Date startDate, Date endDate) throws SQLException
   {
-    return new ArrayList<>(properties);
+    properties = (ArrayList<Property>) propertyDAO.getAvailableProperties(startDate, endDate);
+    support.firePropertyChange("propertyList", null, properties);
+  }
+
+  @Override public void addPropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.addPropertyChangeListener(listener);
+  }
+
+  @Override public void addPropertyChangeListener(String eventName,
+      PropertyChangeListener listener)
+  {
+    if (eventName == null || eventName.isEmpty())
+    {
+      addPropertyChangeListener(listener);
+    }
+    else
+    {
+      support.addPropertyChangeListener(eventName, listener);
+    }
+  }
+
+  @Override public void removePropertyChangeListener(
+      PropertyChangeListener listener)
+  {
+    support.removePropertyChangeListener(listener);
+  }
+
+  @Override public void removePropertyChangeListener(String eventName,
+      PropertyChangeListener listener)
+  {
+    if (eventName == null || eventName.isEmpty())
+    {
+      removePropertyChangeListener(listener);
+    }
+    else
+    {
+      support.removePropertyChangeListener(eventName, listener);
+    }
   }
 }

@@ -2,15 +2,12 @@ package startup;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.PropertyListModel;
-import model.PropertyListModelManager;
 import ui.viewHandler.ViewHandler;
 
 public class Main extends Application {
     @Override public void start(Stage primaryStage) throws Exception
     {
-        PropertyListModel propertyListModel = new PropertyListModelManager();
-        ViewHandler vh = new ViewHandler(propertyListModel);
+        ViewHandler vh = new ViewHandler();
         vh.start();
     }
 

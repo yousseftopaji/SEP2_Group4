@@ -1,19 +1,19 @@
 package model;
 
+import java.util.Date;
+
 public class Property
 {
     private int id;
     private String location;
     private double pricePerNight;
-    private boolean availability;
     private Facilities facilities;
 
-    public Property(int id, String location, double pricePerNight, boolean availability, Facilities facilities) {
+    public Property(int id, String location, double pricePerNight, Facilities facilities) {
         this.id = id;
         this.location = location;
         this.pricePerNight = pricePerNight;
         this.facilities = facilities;
-        this.availability = availability;
     }
 
     public int getId()
@@ -37,19 +37,11 @@ public class Property
         this.pricePerNight = pricePerNight;
     }
 
-    public boolean getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
-    }
-
     public Facilities getFacilities() {
         return facilities;
     }
 
     public String toString(){
-        return "id: "+ id +", Location: " + location + ", Price per night: " + pricePerNight + ", Facilities: " + facilities.toString() + ", Availability: " + availability;
+        return "id: "+ id +", Location: " + location + ", Price per night: " + pricePerNight + ", Facilities: " + facilities.toString();
     }
 }

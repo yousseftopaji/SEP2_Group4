@@ -17,6 +17,7 @@ public class PropertyListController
   @FXML private TableColumn<Property, Double> pricePerNightColumn;
   @FXML private TableColumn<Property, String> facilitiesColumn;
   @FXML private Button selectButton;
+  @FXML private Button backButton;
   @FXML private Label errorMsg;
 
   private PropertyListVM propertyListVM;
@@ -57,5 +58,10 @@ public class PropertyListController
     {
       viewHandler.openBookingView(selected);
     }
+  }
+
+  public void onBack()
+  {
+    viewHandler.openSpecifyDatesView();
   }
 }

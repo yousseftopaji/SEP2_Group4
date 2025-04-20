@@ -10,24 +10,54 @@ import ui.booking.BookingController;
 import ui.booking.BookingVM;
 import ui.propertyList.PropertyListController;
 import ui.propertyList.PropertyListVM;
+import ui.specifyDates.SpecifyDatesController;
+import ui.specifyDates.SpecifyDatesVM;
+
+import java.sql.Date;
 
 public class ViewHandler
 {
+  private SpecifyDatesVM specifyDatesVM;
   private PropertyListVM propertyListVM;
   private BookingVM bookingVM;
   private Stage mainStage;
 
-  public ViewHandler(PropertyListModel propertyListModel)
+  public ViewHandler()
   {
-    propertyListVM = new PropertyListVM(propertyListModel);
-    bookingVM = new BookingVM(propertyListModel);
+    specifyDatesVM = new SpecifyDatesVM();
+    propertyListVM = new PropertyListVM();
+    bookingVM = new BookingVM();
     mainStage = new Stage();
   }
 
   public void start()
   {
-    openPropertyListView();
+    openSpecifyDatesView();
     mainStage.show();
+  }
+
+  private Scene specifyDatesScene;
+  public void openSpecifyDatesView()
+  {
+    try
+    {
+      if (specifyDatesScene == null)
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(
+            "/ui/specifyDates/SpecifyDates.fxml"));
+        Parent root = loader.load();
+        SpecifyDatesController specifyDatesController = loader.getController();
+        specifyDatesController.initialize(specifyDatesVM, this);
+        specifyDatesScene = new Scene(root);
+      }
+      mainStage.setTitle("Specify Dates");
+      mainStage.setScene(specifyDatesScene);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
   }
 
   private Scene propertyListScene;
