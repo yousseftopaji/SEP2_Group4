@@ -33,7 +33,7 @@ public class PropertyDAOImpl implements PropertyDAO
   }
 
   @Override public Property create(int id, String location,
-      double pricePerNight, boolean availability, Facilities facilities) throws SQLException
+      double pricePerNight, Facilities facilities) throws SQLException
   {
     try (Connection connection = getConnection())
     {
@@ -45,23 +45,22 @@ public class PropertyDAOImpl implements PropertyDAO
       }
 
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO property (location, pricePerNight, availability, kitchen, internet, swimmingPool, dishwasher, laundryMachine) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO property (location, pricePerNight, kitchen, internet, swimmingPool, dishwasher, laundryMachine) VALUES (?, ?, ?, ?, ?, ?, ?)",
           PreparedStatement.RETURN_GENERATED_KEYS);
       statement.setString(1, location);
       statement.setDouble(2, pricePerNight);
-      statement.setBoolean(3, availability);
-      statement.setBoolean(4, facilities.getKitchen());
-      statement.setBoolean(5, facilities.getInternet());
-      statement.setBoolean(6, facilities.getSwimmingPool());
-      statement.setBoolean(7, facilities.getDishWasher());
-      statement.setBoolean(8, facilities.getLaundryMachine());
+      statement.setBoolean(3, facilities.getKitchen());
+      statement.setBoolean(4, facilities.getInternet());
+      statement.setBoolean(5, facilities.getSwimmingPool());
+      statement.setBoolean(6, facilities.getDishWasher());
+      statement.setBoolean(7, facilities.getLaundryMachine());
       statement.executeUpdate();
       ResultSet keys = statement.getGeneratedKeys();
       if (keys.next())
       {
         System.out.println("id: " + keys.getInt("propertyid"));
         return new Property(keys.getInt("propertyid"), location, pricePerNight,
-            availability, facilities);
+            facilities);
       }
       else
       {
@@ -87,14 +86,14 @@ public class PropertyDAOImpl implements PropertyDAO
       {
         String location = resultSet.getString("location");
         double pricePerNight = resultSet.getDouble("pricepernight");
-        boolean availability = resultSet.getBoolean("availability");
         boolean kitchen = resultSet.getBoolean("kitchen");
         boolean internet = resultSet.getBoolean("internet");
         boolean swimmingPool = resultSet.getBoolean("swimmingPool");
         boolean dishWasher = resultSet.getBoolean("dishWasher");
         boolean laundryMachine = resultSet.getBoolean("laundryMachine");
         Property property = new Property(id, location, pricePerNight,
-            availability, new Facilities(kitchen, internet, dishWasher, laundryMachine, swimmingPool));
+            new Facilities(kitchen, internet, dishWasher, laundryMachine,
+                swimmingPool));
         return property;
       }
       else
@@ -119,14 +118,14 @@ public class PropertyDAOImpl implements PropertyDAO
         int id = resultSet.getInt("propertyid");
         String loc = resultSet.getString("location");
         double pricePerNight = resultSet.getDouble("pricepernight");
-        boolean availability = resultSet.getBoolean("availability");
         boolean kitchen = resultSet.getBoolean("kitchen");
         boolean internet = resultSet.getBoolean("internet");
         boolean swimmingPool = resultSet.getBoolean("swimmingPool");
         boolean dishWasher = resultSet.getBoolean("dishWasher");
         boolean laundryMachine = resultSet.getBoolean("laundryMachine");
-        Property property = new Property(id, loc, pricePerNight, availability,
-            new Facilities(kitchen, internet, dishWasher, laundryMachine, swimmingPool));
+        Property property = new Property(id, loc, pricePerNight,
+            new Facilities(kitchen, internet, dishWasher, laundryMachine,
+                swimmingPool));
         properties.add(property);
       }
       return properties;
@@ -138,17 +137,15 @@ public class PropertyDAOImpl implements PropertyDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE property SET location = ?, pricePerNight = ?, availability = ?, kitchen = ?, internet = ?, swimmingPool = ?, dishwasher = ?, laundryMachine = ? WHERE propertyid = ?");
+          "UPDATE property SET location = ?, pricePerNight = ?, kitchen = ?, internet = ?, swimmingPool = ?, dishwasher = ?, laundryMachine = ? WHERE propertyid = ?");
       statement.setString(1, property.getLocation());
       statement.setDouble(2, property.getPricePerNight());
-      statement.setBoolean(3, property.getAvailability());
-      statement.setBoolean(4, property.getFacilities().getKitchen());
-      statement.setBoolean(5, property.getFacilities().getInternet());
-      statement.setBoolean(6, property.getFacilities().getSwimmingPool());
-      statement.setBoolean(7, property.getFacilities().getDishWasher());
-      statement.setBoolean(8,
-          property.getFacilities().getLaundryMachine());
-      statement.setInt(9, property.getId());
+      statement.setBoolean(3, property.getFacilities().getKitchen());
+      statement.setBoolean(4, property.getFacilities().getInternet());
+      statement.setBoolean(5, property.getFacilities().getSwimmingPool());
+      statement.setBoolean(6, property.getFacilities().getDishWasher());
+      statement.setBoolean(7, property.getFacilities().getLaundryMachine());
+      statement.setInt(8, property.getId());
       statement.executeUpdate();
     }
   }
@@ -168,6 +165,36 @@ public class PropertyDAOImpl implements PropertyDAO
       {
         System.out.println("Property with id " + id + " does not exist.");
       }
+    }
+  }
+
+  @Override public List<Property> getAvailableProperties(Date startDate, Date endDate) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM property WHERE NOT EXISTS (SELECT 1 FROM booking b WHERE b.propertyID = p.propertyID AND (b.start_date, b.end_date) OVERLAPS (DATE '?', DATE '?')");
+      statement.setDate(1, startDate);
+      statement.setDate(2, endDate);
+      ResultSet resultSet = statement.executeQuery();
+
+      ArrayList<Property> properties = new ArrayList<>();
+      while (resultSet.next())
+      {
+        int id = resultSet.getInt("propertyid");
+        String location = resultSet.getString("location");
+        double pricePerNight = resultSet.getDouble("pricepernight");
+        boolean kitchen = resultSet.getBoolean("kitchen");
+        boolean internet = resultSet.getBoolean("internet");
+        boolean swimmingPool = resultSet.getBoolean("swimmingPool");
+        boolean dishWasher = resultSet.getBoolean("dishWasher");
+        boolean laundryMachine = resultSet.getBoolean("laundryMachine");
+        Property property = new Property(id, location, pricePerNight,
+            new Facilities(kitchen, internet, dishWasher, laundryMachine,
+                swimmingPool));
+        properties.add(property);
+      }
+      return properties;
     }
   }
 }

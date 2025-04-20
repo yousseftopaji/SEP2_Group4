@@ -3,13 +3,17 @@ package persistence.daos.bookings;
 import model.Booking;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface BookingDAO
 {
-  Booking create(Date startDate, Date endDate, int propertyId, int userId) throws Exception;
-  Booking read(Date startDate, int propertyId, int userId) throws Exception;
-  Booking update(Date startDate,Date endDate, int propertyId, int userId) throws Exception;
-  void delete(Date startDate, int propertyId, int userId) throws Exception;
-  List<Booking> getAllBookings() throws Exception;
+  Booking create(Date startDate, Date endDate, int propertyId, String username) throws
+      SQLException;
+  Booking read(Date startDate, int propertyId, String username) throws SQLException;
+  List<Booking> readByUsername(String username) throws SQLException;
+  List<Booking> readByPropertyId(int propertyId) throws SQLException;
+  Booking update(Date startDate,Date endDate, int propertyId, String username) throws SQLException;
+  void delete(Date startDate, int propertyId, String username) throws SQLException;
+  List<Booking> getAllBookings() throws SQLException;
 }
