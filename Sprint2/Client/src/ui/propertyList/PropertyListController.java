@@ -1,5 +1,6 @@
 package ui.propertyList;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -7,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import model.Property;
+import dtos.Property;
 import ui.viewHandler.ViewHandler;
 
 public class PropertyListController
@@ -22,12 +23,14 @@ public class PropertyListController
 
   private PropertyListVM propertyListVM;
   private ViewHandler viewHandler;
+  private ObjectProperty<Property> selectedProperty;
 
   public PropertyListController()
   {
   }
 
   public void initialize(PropertyListVM propertyListVM, ViewHandler viewHandler)
+      throws Exception
   {
     this.propertyListVM = propertyListVM;
     this.viewHandler = viewHandler;
@@ -37,26 +40,25 @@ public class PropertyListController
 
     // Set up the columns
     locationColumn.setCellValueFactory(
-        data -> new SimpleStringProperty(data.getValue().getLocation()));
+        data -> new SimpleStringProperty(data.getValue().location()));
     pricePerNightColumn.setCellValueFactory(data -> new SimpleDoubleProperty(
-        data.getValue().getPricePerNight()).asObject());
+        data.getValue().pricePerNight()).asObject());
     facilitiesColumn.setCellValueFactory(data -> new SimpleStringProperty(
-        data.getValue().getFacilities().toString()));
+        data.getValue().facilities().toString()));
 
     // Bind the selected property to the ViewModel
-    propertyListVM.bindSelectedProperty(table.getSelectionModel().selectedItemProperty());
+    propertyListVM.bindSelectedProperty(
+        table.getSelectionModel().selectedItemProperty());
 
     // Bind the error message to the ViewModel
     errorMsg.textProperty().bind(propertyListVM.getErrorMsgProperty());
   }
 
-  public void onSelectProperty()
+  public void onSelectProperty() throws Exception
   {
-    Property selected = propertyListVM.getSelectedProperty().get();
-
-    if (selected != null)
+    if (propertyListVM.getSelectedProperty().get() != null)
     {
-      viewHandler.openBookingView(selected);
+      viewHandler.openBookingView(propertyListVM.getSelectedProperty().get());
     }
   }
 

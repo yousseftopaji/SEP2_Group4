@@ -1,44 +1,53 @@
 package ui.propertyList;
 
+import dtos.PropertyList;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Property;
-import model.PropertyListModel;
-import model.PropertyListModelManager;
+import dtos.Property;
+import networking.Client;
+import networking.PropertyListClient;
+import networking.PropertyListClientImpl;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 
-public class PropertyListVM
+public class PropertyListVM implements PropertyChangeListener
 {
   private ObservableList<Property> properties;
   private IntegerProperty propertyID;
   private SimpleObjectProperty<Property> selectedProperty;
   private StringProperty errorMsg;
+  private Date startDate;
+  private Date endDate;
+  private PropertyListClient propertyListClient;
 
-  public PropertyListVM()
+  public PropertyListVM() throws IOException
   {
     this.properties = FXCollections.observableArrayList();
     this.propertyID = new SimpleIntegerProperty(-1);
     this.selectedProperty = new SimpleObjectProperty<>();
     this.errorMsg = new SimpleStringProperty();
-    PropertyChangeListener propertyChangeListener = evt -> {
-      if (evt.getPropertyName().equals("properties"))
-      {
-        properties.clear();
-        properties.addAll((ObservableList<Property>) evt.getNewValue());
-      }
-    };
-    loadProperties();
+
+    Client client = new Client();
+    this.propertyListClient = new PropertyListClientImpl(client);
+    client.addPropertyChangeListener(this);
   }
 
-  public void loadProperties()
+  public void setDates(Date startDate, Date endDate)
   {
-    getPropertyList();
+    this.startDate = startDate;
+    this.endDate = endDate;
   }
 
-  public ObservableList<Property> getPropertyList()
+  public ObservableList<Property> getPropertyList() throws Exception
   {
+    //Call the client controller to get the properties
+    propertyListClient.getAvailableProperties(startDate, endDate);
     return properties;
   }
 
@@ -47,12 +56,14 @@ public class PropertyListVM
     return propertyID;
   }
 
-  public void bindSelectedProperty(ReadOnlyObjectProperty<Property> selectedPropertyFromTable) {
+  public void bindSelectedProperty(ReadOnlyObjectProperty<Property> selectedPropertyFromTable)
+  {
     selectedProperty.bind(selectedPropertyFromTable);
   }
 
   public SimpleObjectProperty<Property> getSelectedProperty()
   {
+    errorMsg.set("");
     if (selectedProperty.getValue() == null)
     {
       errorMsg.set("No property selected");
@@ -63,5 +74,24 @@ public class PropertyListVM
   public StringProperty getErrorMsgProperty()
   {
     return errorMsg;
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    if (evt.getPropertyName().equals("getAllProperties"))
+    {
+      properties.clear();
+      PropertyList propertyArray = (PropertyList) evt.getNewValue();
+      for (int i = 0; i < propertyArray.size(); i++)
+      {
+        Property property = propertyArray.getProperty(i);
+        properties.add(property);
+      }
+    }
+
+    else if (evt.getPropertyName().equals("getPropertyByID"))
+    {
+      selectedProperty.set((Property) evt.getNewValue());
+    }
   }
 }

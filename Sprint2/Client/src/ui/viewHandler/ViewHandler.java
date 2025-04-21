@@ -4,8 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Property;
-import model.PropertyListModel;
+import dtos.Property;
 import ui.booking.BookingController;
 import ui.booking.BookingVM;
 import ui.propertyList.PropertyListController;
@@ -13,6 +12,7 @@ import ui.propertyList.PropertyListVM;
 import ui.specifyDates.SpecifyDatesController;
 import ui.specifyDates.SpecifyDatesVM;
 
+import java.io.IOException;
 import java.sql.Date;
 
 public class ViewHandler
@@ -22,7 +22,8 @@ public class ViewHandler
   private BookingVM bookingVM;
   private Stage mainStage;
 
-  public ViewHandler()
+
+  public ViewHandler() throws IOException
   {
     specifyDatesVM = new SpecifyDatesVM();
     propertyListVM = new PropertyListVM();
@@ -60,6 +61,12 @@ public class ViewHandler
     }
   }
 
+  public void setDates(Date startDate, Date endDate)
+  {
+    propertyListVM.setDates(startDate, endDate);
+    bookingVM.setDates(startDate, endDate);
+  }
+
   private Scene propertyListScene;
   public void openPropertyListView()
   {
@@ -85,9 +92,9 @@ public class ViewHandler
   }
 
   private Scene bookingScene;
-  public void openBookingView(Property property)
+  public void openBookingView(Property property) throws Exception
   {
-    bookingVM.updateProperty(property.getId());
+    bookingVM.updateProperty(property);
     try
     {
       if (bookingScene == null)
@@ -98,7 +105,6 @@ public class ViewHandler
         Parent root = loader.load();
         BookingController bookingController = loader.getController();
 
-        //TODO initialize the controller with the current selected property.
         bookingController.initialize(bookingVM, this);
         bookingScene = new Scene(root);
       }

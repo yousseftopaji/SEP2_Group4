@@ -36,11 +36,12 @@ public class BookingController
     facilitiesTextField.textProperty().bind(bookingVM.getFacilitiesProperty());
     newEndDateAvailabilityField.setEditable(false);
     errorMsg.textProperty().bind(bookingVM.getErrorMsgProperty());
+    bookingDateField.setValue(bookingVM.getEndDate().toLocalDate());
   }
 
   public void changeEndDate()
   {
-    bookingVM.changeEndDate(bookingDateField.getValue());
+    bookingVM.onChangeEndDate(bookingDateField.getValue());
     newEndDateAvailabilityField.textProperty().bind(bookingVM.getAvailabilityProperty());
   }
 

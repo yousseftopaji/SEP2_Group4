@@ -1,7 +1,7 @@
 package persistence.daos.properties;
 
-import model.Facilities;
-import model.Property;
+import dtos.Facilities;
+import dtos.Property;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -49,11 +49,11 @@ public class PropertyDAOImpl implements PropertyDAO
           PreparedStatement.RETURN_GENERATED_KEYS);
       statement.setString(1, location);
       statement.setDouble(2, pricePerNight);
-      statement.setBoolean(3, facilities.getKitchen());
-      statement.setBoolean(4, facilities.getInternet());
-      statement.setBoolean(5, facilities.getSwimmingPool());
-      statement.setBoolean(6, facilities.getDishWasher());
-      statement.setBoolean(7, facilities.getLaundryMachine());
+      statement.setBoolean(3, facilities.kitchen());
+      statement.setBoolean(4, facilities.internet());
+      statement.setBoolean(5, facilities.swimmingPool());
+      statement.setBoolean(6, facilities.dishwasher());
+      statement.setBoolean(7, facilities.laundryMachine());
       statement.executeUpdate();
       ResultSet keys = statement.getGeneratedKeys();
       if (keys.next())
@@ -138,14 +138,14 @@ public class PropertyDAOImpl implements PropertyDAO
     {
       PreparedStatement statement = connection.prepareStatement(
           "UPDATE property SET location = ?, pricePerNight = ?, kitchen = ?, internet = ?, swimmingPool = ?, dishwasher = ?, laundryMachine = ? WHERE propertyid = ?");
-      statement.setString(1, property.getLocation());
-      statement.setDouble(2, property.getPricePerNight());
-      statement.setBoolean(3, property.getFacilities().getKitchen());
-      statement.setBoolean(4, property.getFacilities().getInternet());
-      statement.setBoolean(5, property.getFacilities().getSwimmingPool());
-      statement.setBoolean(6, property.getFacilities().getDishWasher());
-      statement.setBoolean(7, property.getFacilities().getLaundryMachine());
-      statement.setInt(8, property.getId());
+      statement.setString(1, property.location());
+      statement.setDouble(2, property.pricePerNight());
+      statement.setBoolean(3, property.facilities().kitchen());
+      statement.setBoolean(4, property.facilities().internet());
+      statement.setBoolean(5, property.facilities().swimmingPool());
+      statement.setBoolean(6, property.facilities().dishwasher());
+      statement.setBoolean(7, property.facilities().laundryMachine());
+      statement.setInt(8, property.id());
       statement.executeUpdate();
     }
   }
@@ -168,12 +168,13 @@ public class PropertyDAOImpl implements PropertyDAO
     }
   }
 
-  @Override public List<Property> getAvailableProperties(Date startDate, Date endDate) throws SQLException
+  @Override public List<Property> getAvailableProperties(Date startDate,
+      Date endDate) throws SQLException
   {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT * FROM property WHERE NOT EXISTS (SELECT 1 FROM booking b WHERE b.propertyID = p.propertyID AND (b.start_date, b.end_date) OVERLAPS (DATE '?', DATE '?')");
+          "SELECT * FROM property p WHERE NOT EXISTS (SELECT * FROM booking b WHERE b.propertyID = p.propertyID AND (b.start_date, b.end_date) OVERLAPS (?, ?))");
       statement.setDate(1, startDate);
       statement.setDate(2, endDate);
       ResultSet resultSet = statement.executeQuery();
@@ -195,6 +196,40 @@ public class PropertyDAOImpl implements PropertyDAO
         properties.add(property);
       }
       return properties;
+    }
+  }
+
+  @Override public boolean isAvailable(Date startDate, Date endDate, int id)
+      throws SQLException
+  {
+    //Check the connection
+    try (Connection connection = getConnection())
+    {
+      if (connection == null || connection.isClosed())
+      {
+        throw new SQLException(
+            "Failed to establish a connection to the database.");
+      }
+    }
+
+    // Check if the property exists
+    Property property = readByID(id);
+    if (property == null)
+    {
+      System.out.println("Property with id " + id + " does not exist.");
+      return false;
+    }
+
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM booking WHERE propertyID = ? AND (start_date, end_date) OVERLAPS (?, ?)");
+      statement.setInt(1, id);
+      statement.setDate(2, startDate);
+      statement.setDate(3, endDate);
+      ResultSet resultSet = statement.executeQuery();
+      // If the result set is empty, the property is available
+      return !resultSet.next();
     }
   }
 }

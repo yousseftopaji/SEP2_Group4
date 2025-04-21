@@ -1,7 +1,8 @@
-package networking;
+package startup;
 
 import model.PropertyListModel;
 import model.PropertyListModelManager;
+import networking.MainSocketHandler;
 import persistence.daos.properties.PropertyDAO;
 import persistence.daos.properties.PropertyDAOImpl;
 
@@ -16,11 +17,6 @@ public class Server
 
   public static void main(String[] args) throws SQLException, IOException
   {
-//    PropertyDAO propertyDAO = PropertyDAOImpl.getInstance();
-//    PropertyListModel propertyListModel = new PropertyListModelManager(propertyDAO);
-//    MainSocketHandler mainSocketHandler = new MainSocketHandler(propertyListModel);
-//    mainSocketHandler.run();
-
     System.out.println("Server started on port: " + PORT);
 
     //Create a server socket

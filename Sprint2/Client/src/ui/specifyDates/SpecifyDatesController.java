@@ -6,12 +6,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import ui.viewHandler.ViewHandler;
 
+import java.sql.Date;
+
 public class SpecifyDatesController
 {
   private @FXML DatePicker startDate;
   private @FXML DatePicker endDate;
   private @FXML Label errMsg;
-  private @FXML Button submitButton;
+  private @FXML Button proceedButton;
 
   private SpecifyDatesVM specifyDatesVM;
   private ViewHandler viewHandler;
@@ -29,7 +31,7 @@ public class SpecifyDatesController
     endDate.setValue(specifyDatesVM.getEndDate());
     errMsg.textProperty().bind(specifyDatesVM.getErrorMsgProperty());
     // Disable submit button if there's an error
-    submitButton.disableProperty().bind(specifyDatesVM.isValidProperty().not());
+    proceedButton.disableProperty().bind(specifyDatesVM.isValidProperty().not());
 
     // Live validation as the user changes the dates
     startDate.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -44,14 +46,8 @@ public class SpecifyDatesController
   public void onSubmitButtonClicked()
   {
     specifyDatesVM.setStartDate(startDate.getValue());
-    System.out.println("Start date: " + startDate.getValue());
     specifyDatesVM.setEndDate(endDate.getValue());
-    System.out.println("End date: " + endDate.getValue());
-    if (endDate.getValue().isBefore(startDate.getValue()))
-    {
-      specifyDatesVM.getErrorMsgProperty().set("End date cannot be before start date");
-      return;
-    }
+    viewHandler.setDates(Date.valueOf(startDate.getValue()), Date.valueOf(endDate.getValue()));
     viewHandler.openPropertyListView();
   }
 }

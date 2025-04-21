@@ -1,5 +1,5 @@
-import model.Facilities;
-import model.Property;
+import dtos.Facilities;
+import dtos.Property;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

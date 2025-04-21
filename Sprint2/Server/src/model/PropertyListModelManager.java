@@ -1,5 +1,6 @@
 package model;
 
+import dtos.PropertyList;
 import persistence.daos.properties.PropertyDAO;
 
 import java.beans.PropertyChangeListener;
@@ -7,6 +8,9 @@ import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+
+import dtos.Property;
+import dtos.Facilities;
 
 public class PropertyListModelManager implements PropertyListModel
 {
@@ -27,20 +31,27 @@ public class PropertyListModelManager implements PropertyListModel
     return properties.get(id);
   }
 
-  @Override public boolean isAvailable(Date startDate, Date endDate, int id)
+  @Override public void isAvailable(Date startDate, Date endDate, int id)
   {
-    Property property = getByID(id);
-    if (property != null)
+    try
     {
-//      TODO : Remove the available method from the Property class
+      boolean isAvailable = propertyDAO.isAvailable(startDate, endDate, id);
+      support.firePropertyChange("isAvailable", null, isAvailable);
     }
-    return false;
+    catch (SQLException e)
+    {
+      throw new RuntimeException(e);
+    }
   }
 
   public void getAvailableProperties(Date startDate, Date endDate) throws SQLException
   {
     properties = (ArrayList<Property>) propertyDAO.getAvailableProperties(startDate, endDate);
-    support.firePropertyChange("propertyList", null, properties);
+    PropertyList propertyList = new PropertyList();
+    propertyList.setProperties(properties);
+
+    // Notify listeners about the change in the property list
+    support.firePropertyChange("propertyList", null, propertyList);
   }
 
   @Override public void addPropertyChangeListener(

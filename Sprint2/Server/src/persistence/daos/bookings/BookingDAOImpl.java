@@ -31,7 +31,7 @@ public class BookingDAOImpl implements BookingDAO
         "postgres", "viaviavia");
   }
 
-  @Override public Booking create(java.sql.Date startDate, Date endDate,
+  @Override public Booking create(Date startDate, Date endDate,
       int propertyId, String username) throws SQLException
   {
     try (Connection connection = getConnection())
@@ -45,8 +45,7 @@ public class BookingDAOImpl implements BookingDAO
 
       // Check if the property is available
       PreparedStatement checkingStatement = connection.prepareStatement(
-          "SELECT *\n" + "FROM booking\n" + "WHERE propertyID = ?\n"
-              + "  AND (start_date, end_date) OVERLAPS (?, ?);\n");
+          "SELECT * FROM booking WHERE propertyID = ? AND (start_date, end_date) OVERLAPS (?, ?)");
       checkingStatement.setInt(1, propertyId);
       checkingStatement.setDate(2, startDate);
       checkingStatement.setDate(3, endDate);
