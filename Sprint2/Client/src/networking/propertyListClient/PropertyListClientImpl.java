@@ -1,6 +1,7 @@
-package networking;
+package networking.propertyListClient;
 
 import com.google.gson.Gson;
+import networking.Client;
 
 import java.io.IOException;
 import java.sql.Date;

@@ -1,4 +1,4 @@
-package networking;
+package networking.propertyListClient;
 
 import java.sql.Date;
 

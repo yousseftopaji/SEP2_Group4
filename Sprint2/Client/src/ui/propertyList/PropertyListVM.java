@@ -6,15 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import dtos.Property;
 import networking.Client;
-import networking.PropertyListClient;
-import networking.PropertyListClientImpl;
+import networking.propertyListClient.PropertyListClient;
+import networking.propertyListClient.PropertyListClientImpl;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class PropertyListVM implements PropertyChangeListener
 {

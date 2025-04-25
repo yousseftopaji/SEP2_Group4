@@ -3,8 +3,8 @@ package ui.booking;
 import dtos.Property;
 import javafx.beans.property.*;
 import networking.Client;
-import networking.PropertyListClient;
-import networking.PropertyListClientImpl;
+import networking.propertyListClient.PropertyListClient;
+import networking.propertyListClient.PropertyListClientImpl;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
