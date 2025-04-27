@@ -16,5 +16,4 @@ public interface PropertyDAO
   void update(Property property) throws SQLException;
   void delete(int id) throws SQLException;
   List<Property> getAvailableProperties(Date startDate, Date endDate) throws SQLException;
-  boolean isAvailable(Date startDate, Date endDate, int id) throws SQLException;
 }

@@ -1,8 +1,12 @@
 package startup;
 
-import model.PropertyListModel;
-import model.PropertyListModelManager;
+import model.booking.BookingModel;
+import model.booking.BookingModelManager;
+import model.propertyList.PropertyListModel;
+import model.propertyList.PropertyListModelManager;
 import networking.MainSocketHandler;
+import persistence.daos.bookings.BookingDAO;
+import persistence.daos.bookings.BookingDAOImpl;
 import persistence.daos.properties.PropertyDAO;
 import persistence.daos.properties.PropertyDAOImpl;
 
@@ -22,7 +26,7 @@ public class Server
     //Create a server socket
     ServerSocket serverSocket = new ServerSocket(PORT);
 
-    while(true)
+    while (true)
     {
       System.out.println("Waiting for client connection...");
 
@@ -33,11 +37,18 @@ public class Server
 
       //Create a property list model
       PropertyDAO propertyDAO = PropertyDAOImpl.getInstance();
+      // Create a booking DAO instance
+      BookingDAO bookingDAO = BookingDAOImpl.getInstance();
+
+      // Create a property list model manager
       PropertyListModel propertyListModel = new PropertyListModelManager(
           propertyDAO);
+      // Create a booking model
+      BookingModel bookingModel = new BookingModelManager(bookingDAO);
 
-      Thread clientThread = new Thread(new MainSocketHandler(socket,
-          propertyListModel));
+      // Create a new thread for the client
+      Thread clientThread = new Thread(
+          new MainSocketHandler(socket, propertyListModel, bookingModel));
       clientThread.start();
     }
   }

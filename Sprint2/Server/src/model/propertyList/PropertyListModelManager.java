@@ -1,4 +1,4 @@
-package model;
+package model.propertyList;
 
 import dtos.PropertyList;
 import persistence.daos.properties.PropertyDAO;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.sql.Date;
 
 import dtos.Property;
-import dtos.Facilities;
 
 public class PropertyListModelManager implements PropertyListModel
 {
@@ -22,26 +21,12 @@ public class PropertyListModelManager implements PropertyListModel
   {
     this.propertyDAO = propertyDAO;
     this.support = new PropertyChangeSupport(this);
-    this.support = new PropertyChangeSupport(this);
   }
 
   @Override public Property getByID(int id)
   {
     //TODO: Watch out for the difference between id and index (ID does not represent the index of the list)
     return properties.get(id);
-  }
-
-  @Override public void isAvailable(Date startDate, Date endDate, int id)
-  {
-    try
-    {
-      boolean isAvailable = propertyDAO.isAvailable(startDate, endDate, id);
-      support.firePropertyChange("isAvailable", null, isAvailable);
-    }
-    catch (SQLException e)
-    {
-      throw new RuntimeException(e);
-    }
   }
 
   public void getAvailableProperties(Date startDate, Date endDate) throws SQLException
@@ -58,37 +43,5 @@ public class PropertyListModelManager implements PropertyListModel
       PropertyChangeListener listener)
   {
     support.addPropertyChangeListener(listener);
-  }
-
-  @Override public void addPropertyChangeListener(String eventName,
-      PropertyChangeListener listener)
-  {
-    if (eventName == null || eventName.isEmpty())
-    {
-      addPropertyChangeListener(listener);
-    }
-    else
-    {
-      support.addPropertyChangeListener(eventName, listener);
-    }
-  }
-
-  @Override public void removePropertyChangeListener(
-      PropertyChangeListener listener)
-  {
-    support.removePropertyChangeListener(listener);
-  }
-
-  @Override public void removePropertyChangeListener(String eventName,
-      PropertyChangeListener listener)
-  {
-    if (eventName == null || eventName.isEmpty())
-    {
-      removePropertyChangeListener(listener);
-    }
-    else
-    {
-      support.removePropertyChangeListener(eventName, listener);
-    }
   }
 }

@@ -24,16 +24,23 @@ public class PropertyListVM implements PropertyChangeListener
   private Date endDate;
   private PropertyListClient propertyListClient;
 
-  public PropertyListVM() throws IOException
+  public PropertyListVM()
   {
     this.properties = FXCollections.observableArrayList();
     this.propertyID = new SimpleIntegerProperty(-1);
     this.selectedProperty = new SimpleObjectProperty<>();
     this.errorMsg = new SimpleStringProperty();
 
-    Client client = new Client();
-    this.propertyListClient = new PropertyListClientImpl(client);
-    client.addPropertyChangeListener(this);
+    try
+    {
+      Client client = new Client();
+      this.propertyListClient = new PropertyListClientImpl(client);
+      client.addPropertyChangeListener(this);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public void setDates(Date startDate, Date endDate)
@@ -54,7 +61,8 @@ public class PropertyListVM implements PropertyChangeListener
     return propertyID;
   }
 
-  public void bindSelectedProperty(ReadOnlyObjectProperty<Property> selectedPropertyFromTable)
+  public void bindSelectedProperty(
+      ReadOnlyObjectProperty<Property> selectedPropertyFromTable)
   {
     selectedProperty.bind(selectedPropertyFromTable);
   }

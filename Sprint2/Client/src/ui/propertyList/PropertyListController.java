@@ -22,8 +22,8 @@ public class PropertyListController
   @FXML private Label errorMsg;
 
   private PropertyListVM propertyListVM;
-  private ViewHandler viewHandler;
   private ObjectProperty<Property> selectedProperty;
+  private ViewHandler viewHandler;
 
   public PropertyListController()
   {

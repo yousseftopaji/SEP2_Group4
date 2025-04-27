@@ -1,10 +1,12 @@
 package networking;
 
-
-import networking.socketHandlers.PropertyListHandler;
+import model.booking.BookingModel;
+import networking.bookingHandler.BookingHandler;
+import networking.bookingHandler.BookingHandlerImpl;
+import networking.propertyListHandler.PropertyListHandler;
 import utils.JsonParser;
-import model.PropertyListModel;
-import networking.socketHandlers.PropertyListHandlerImpl;
+import model.propertyList.PropertyListModel;
+import networking.propertyListHandler.PropertyListHandlerImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,60 +19,114 @@ public class MainSocketHandler implements Runnable
 {
   private final Socket socket;
   private final PropertyListModel propertyListModel;
+  private final BookingModel bookingModel;
   private final BufferedReader in;
   private final PrintWriter out;
-  PropertyListHandler propertyListHandler;
+  private PropertyListHandler propertyListHandler;
+  private BookingHandler bookingHandler;
 
-  public MainSocketHandler(Socket socket, PropertyListModel propertyListModel)
-      throws IOException, SQLException
+  public MainSocketHandler(Socket socket, PropertyListModel propertyListModel,
+      BookingModel bookingModel) throws IOException, SQLException
   {
-    // Initialize the socket and property list model
+    // Initialize the socket
     this.socket = socket;
-    this.propertyListModel = propertyListModel;
-    in = new BufferedReader(new java.io.InputStreamReader(socket.getInputStream()));
+
+    // Initialize the input and output streams
+    in = new BufferedReader(
+        new java.io.InputStreamReader(socket.getInputStream()));
     out = new PrintWriter(socket.getOutputStream(), true);
-    propertyListHandler = new PropertyListHandlerImpl(socket, propertyListModel);
+
+    // Initialize the property list model and booking model
+    this.propertyListModel = propertyListModel;
+    this.bookingModel = bookingModel;
+
+    // Initialize the handlers
+    propertyListHandler = new PropertyListHandlerImpl(socket,
+        propertyListModel);
+    bookingHandler = new BookingHandlerImpl(socket, bookingModel);
   }
 
   @Override public void run()
   {
     try
     {
-      String clientRequest = in.readLine();
-      if (clientRequest.equals("getAllProperties"))
+      String clientRequest;
+      try
       {
-        // Read the dates from the client
-        String datesJson = in.readLine();
-        // Parse the dates from JSON
-        Date[] dates = JsonParser.jsonToDates(datesJson);
+        while ((clientRequest = in.readLine()) != null)
+        {
+          switch (clientRequest)
+          {
+            case "getAvailableProperties" ->
+            {
+              // Read the dates from the client
+              String datesJson = in.readLine();
+              // Parse the dates from JSON
+              Date[] dates = JsonParser.jsonToDates(datesJson);
 
-        propertyListHandler.setDates(dates);
-        propertyListHandler.getAvailableProperties();
+              propertyListHandler.setDates(dates);
+              propertyListHandler.getAvailableProperties();
+            }
+            case "isAvailable" ->
+            {
+              int propertyID = Integer.parseInt(in.readLine());
+
+              // Read the start and end dates from the client
+              String datesJson = in.readLine();
+
+              // Parse the dates from JSON
+              Date[] dates = JsonParser.jsonToDates(datesJson);
+
+              // Check if the property is available
+              bookingHandler.isAvailable(dates[0], dates[1], propertyID);
+            }
+            case "getPropertyByID" ->
+            {
+              //read the property ID from the client
+              String propertyID = in.readLine();
+
+              //TODO get the property by ID
+            }
+            case "createBooking" ->
+            {
+              int propertyId = Integer.parseInt(in.readLine());
+              String username = in.readLine();
+              String startDateJson = in.readLine();
+
+              //Convert the dates from Json
+              Date[] dates = JsonParser.jsonToDates(startDateJson);
+              Date startDate = dates[0];
+              Date endDate = dates[1];
+
+              // Create the booking
+              bookingHandler.createBooking(propertyId, startDate, endDate,
+                  username);
+            }
+          }
+        }
       }
-      else if (clientRequest.equals("isAvailable"))
+      catch (SQLException e)
       {
-        int propertyID = Integer.parseInt(in.readLine());
-
-        // Read the start and end dates from the client
-        String datesJson = in.readLine();
-
-        // Parse the dates from JSON
-        Date[] dates = JsonParser.jsonToDates(datesJson);
-
-        // Check if the property is available
-        propertyListHandler.isAvailable(dates[0], dates[1], propertyID);
+        throw new RuntimeException(e);
       }
-      else if (clientRequest.equals("getPropertyByID"))
+      catch (IOException e)
       {
-        //read the property ID from the client
-        String propertyID = in.readLine();
-
-        //TODO get the property by ID
+        throw new RuntimeException(e);
       }
     }
-    catch (IOException | SQLException e)
+    finally
     {
-      throw new RuntimeException(e);
+      // clean up socket, streams, etc.
+      try
+      {
+        socket.close();
+        in.close();
+        out.close();
+      }
+      catch (IOException e)
+      {
+        throw new RuntimeException(e);
+      }
     }
   }
 }

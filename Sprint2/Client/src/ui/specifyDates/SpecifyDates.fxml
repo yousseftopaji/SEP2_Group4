@@ -10,6 +10,6 @@
       <Label layoutX="140.0" layoutY="161.0" text="Start date" />
       <Label layoutX="140.0" layoutY="221.0" text="End date" />
       <Label fx:id="errMsg" layoutX="140.0" layoutY="280.0" prefHeight="17.0" prefWidth="348.0" text="Error message" />
-      <Button fx:id="proceedButton" layoutX="270.0" layoutY="327.0" mnemonicParsing="false" onAction="#onSubmitButtonClicked" text="Proceed" />
+      <Button fx:id="proceedButton" layoutX="270.0" layoutY="327.0" mnemonicParsing="false" onAction="#onProceedButtonClicked" text="Proceed" />
    </children>
 </AnchorPane>

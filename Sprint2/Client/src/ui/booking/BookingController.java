@@ -52,7 +52,6 @@ public class BookingController
 
   public void onSubmitButtonClicked()
   {
-    // Implement the logic to handle the submit button click (Implementation of Sprint 2)
-    // Handle the submit button click
+    bookingVM.createBooking();
   }
 }

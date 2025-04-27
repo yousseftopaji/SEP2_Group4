@@ -12,7 +12,6 @@ import ui.propertyList.PropertyListVM;
 import ui.specifyDates.SpecifyDatesController;
 import ui.specifyDates.SpecifyDatesVM;
 
-import java.io.IOException;
 import java.sql.Date;
 
 public class ViewHandler
@@ -23,7 +22,7 @@ public class ViewHandler
   private Stage mainStage;
 
 
-  public ViewHandler() throws IOException
+  public ViewHandler()
   {
     specifyDatesVM = new SpecifyDatesVM();
     propertyListVM = new PropertyListVM();

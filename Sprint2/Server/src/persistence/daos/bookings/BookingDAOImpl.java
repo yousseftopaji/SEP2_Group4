@@ -1,6 +1,7 @@
 package persistence.daos.bookings;
 
-import model.Booking;
+import dtos.Booking;
+import dtos.Property;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -320,6 +321,32 @@ public class BookingDAOImpl implements BookingDAO
     {
       e.printStackTrace();
       throw e;
+    }
+  }
+
+  @Override public boolean isAvailable(Date startDate, Date endDate, int id)
+      throws SQLException
+  {
+    //Check the connection
+    try (Connection connection = getConnection())
+    {
+      if (connection == null || connection.isClosed())
+      {
+        throw new SQLException(
+            "Failed to establish a connection to the database.");
+      }
+    }
+
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM booking WHERE propertyID = ? AND (start_date, end_date) OVERLAPS (?, ?)");
+      statement.setInt(1, id);
+      statement.setDate(2, startDate);
+      statement.setDate(3, endDate);
+      ResultSet resultSet = statement.executeQuery();
+      // If the result set is empty, the property is available
+      return !resultSet.next();
     }
   }
 }

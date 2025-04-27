@@ -1,5 +1,6 @@
 package networking;
 
+import dtos.Booking;
 import utils.JsonParser;
 import dtos.Property;
 import dtos.PropertyList;
@@ -29,14 +30,15 @@ public class Client
     propertyChangeSupport = new PropertyChangeSupport(this);
   }
 
-  public void addPropertyChangeListener(PropertyChangeListener listener) {
+  public void addPropertyChangeListener(PropertyChangeListener listener)
+  {
     propertyChangeSupport.addPropertyChangeListener(listener);
   }
 
   public void requestAvailableProperties(String datesJson)
   {
     // Send the request to the server
-    out.println("getAllProperties");
+    out.println("getAvailableProperties");
     out.println(datesJson);
     out.flush();
 
@@ -55,7 +57,8 @@ public class Client
     PropertyList properties = JsonParser.jsonToProperties(jsonResponse);
 
     // Notify the listeners about the new properties
-    propertyChangeSupport.firePropertyChange("getAllProperties", null, properties);
+    propertyChangeSupport.firePropertyChange("getAllProperties", null,
+        properties);
   }
 
   public void getPropertyByID(int id)
@@ -105,5 +108,34 @@ public class Client
 
     // Parse the JSON response
     propertyChangeSupport.firePropertyChange("isAvailable", null, jsonResponse);
+  }
+
+  public void createBooking(int propertyID, Date startDate, Date endDate,
+      String username)
+  {
+    //Send the request to the server
+    out.println("createBooking");
+    out.println(propertyID);
+    out.println(username);
+    String datesJson = JsonParser.datesToJson(startDate, endDate);
+    out.println(datesJson);
+    out.flush();
+
+    // Read the response from the server
+    String jsonResponse = null;
+    try
+    {
+      jsonResponse = in.readLine();
+    }
+    catch (IOException e)
+    {
+      throw new RuntimeException(e);
+    }
+
+    Booking newBooking = JsonParser.jsonToBooking(jsonResponse);
+
+    // Parse the JSON response
+    propertyChangeSupport.firePropertyChange("bookingCreated", null,
+        newBooking);
   }
 }

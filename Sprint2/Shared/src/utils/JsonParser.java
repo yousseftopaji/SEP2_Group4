@@ -1,6 +1,7 @@
 package utils;
 
 import com.google.gson.Gson;
+import dtos.Booking;
 import dtos.Property;
 import dtos.PropertyList;
 
@@ -37,5 +38,17 @@ public class JsonParser
   {
     Gson gson = new Gson();
     return gson.fromJson(json, Date[].class);
+  }
+
+  public static String bookingToJson(Booking booking)
+  {
+    Gson gson = new Gson();
+    return gson.toJson(booking);
+  }
+
+  public static Booking jsonToBooking(String jsonResponse)
+  {
+    Gson gson = new Gson();
+    return gson.fromJson(jsonResponse, Booking.class);
   }
 }

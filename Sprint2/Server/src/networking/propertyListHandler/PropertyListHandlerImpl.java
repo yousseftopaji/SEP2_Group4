@@ -1,8 +1,7 @@
-package networking.socketHandlers;
+package networking.propertyListHandler;
 
 import dtos.PropertyList;
-import dtos.Property;
-import model.PropertyListModel;
+import model.propertyList.PropertyListModel;
 import utils.JsonParser;
 
 import java.beans.PropertyChangeEvent;
@@ -13,12 +12,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.List;
 
 public class PropertyListHandlerImpl implements PropertyChangeListener, PropertyListHandler
 {
   private Socket socket;
-  private List<Property> properties;
   private PrintWriter out;
   private BufferedReader in;
   private PropertyListModel propertyListModel;
@@ -51,12 +48,7 @@ public class PropertyListHandlerImpl implements PropertyChangeListener, Property
     propertyListModel.getAvailableProperties(dates[0], dates[1]);
   }
 
-  @Override
-  public void isAvailable(Date startDate, Date endDate, int propertyId)
-  {
-    // Check if the property is available
-    propertyListModel.isAvailable(startDate,endDate,propertyId);
-  }
+
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
@@ -74,15 +66,8 @@ public class PropertyListHandlerImpl implements PropertyChangeListener, Property
       out.println(jsonResponse);
       out.flush();
     }
-    else if (name.equals("isAvailable"))
-    {
-      // Get the availability status
-      boolean isAvailable = (boolean) evt.getNewValue();
-
-      // Send the availability status to the client
-      out.println(isAvailable);
-      out.flush();
-    }
+    else if(name.equals("getPropertyByID"))
+    {}
     else
     {
       System.out.println("Unknown property change event: " + name);

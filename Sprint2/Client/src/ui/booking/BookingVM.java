@@ -1,10 +1,14 @@
 package ui.booking;
 
+import dtos.Booking;
 import dtos.Property;
 import javafx.beans.property.*;
 import networking.Client;
+import networking.bookingClient.BookingClient;
+import networking.bookingClient.BookingClientImpl;
 import networking.propertyListClient.PropertyListClient;
 import networking.propertyListClient.PropertyListClientImpl;
+import ui.specifyDates.SpecifyDatesVM;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -23,11 +27,14 @@ public class BookingVM implements PropertyChangeListener
   private StringProperty availability;
   private StringProperty errorMsg;
   private PropertyListClient propertyListClient;
+  private BookingClient bookingClient;
   private Date startDate;
   private Date endDate;
+  private SpecifyDatesVM specifyDatesVM;
 
-  public BookingVM() throws IOException
+  public BookingVM()
   {
+    // Initialize the properties
     propertyID = new SimpleIntegerProperty();
     location = new SimpleStringProperty();
     propertyFacilities = new SimpleStringProperty();
@@ -35,9 +42,23 @@ public class BookingVM implements PropertyChangeListener
     changeEndDate = new SimpleObjectProperty<>();
     availability = new SimpleStringProperty();
     errorMsg = new SimpleStringProperty();
-    Client client = new Client();
-    propertyListClient = new PropertyListClientImpl(client);
-    client.addPropertyChangeListener(this);
+
+    // Initialize the client
+    try
+    {
+      Client client = new Client();
+      propertyListClient = new PropertyListClientImpl(client);
+      client.addPropertyChangeListener(this);
+      bookingClient = new BookingClientImpl(client);
+    }
+    catch (IOException e)
+    {
+      throw new RuntimeException(e);
+    }
+
+    endDate = Date.valueOf(LocalDate.now());
+    startDate = Date.valueOf(LocalDate.now());
+    changeEndDate.set(endDate);
   }
 
   public void updateProperty(Property property) throws Exception
@@ -129,11 +150,40 @@ public class BookingVM implements PropertyChangeListener
     return endDate;
   }
 
+  public void createBooking()
+  {
+    try
+    {
+      bookingClient.createBooking(propertyID.get(), startDate, endDate,
+          "YoussefTopaji");
+    }
+    catch (Exception e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     if (evt.getPropertyName().equals("isAvailable"))
     {
       availability.set((String) evt.getNewValue());
+      if (evt.getNewValue().equals("true"))
+      {
+        endDate = changeEndDate.get();
+      }
+    }
+    else if (evt.getPropertyName().equals("bookingCreated"))
+    {
+      // Handle booking creation success
+      Booking booking = (Booking) evt.getNewValue();
+      errorMsg.setValue(
+          "Booking created successfully from " + booking.getStartDate() + " to "
+              + booking.getEndDate());
+    }
+    else if (evt.getPropertyName().equals("error"))
+    {
+      errorMsg.setValue((String) evt.getNewValue());
     }
   }
 }

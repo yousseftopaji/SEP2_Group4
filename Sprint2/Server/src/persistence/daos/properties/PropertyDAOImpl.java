@@ -198,38 +198,4 @@ public class PropertyDAOImpl implements PropertyDAO
       return properties;
     }
   }
-
-  @Override public boolean isAvailable(Date startDate, Date endDate, int id)
-      throws SQLException
-  {
-    //Check the connection
-    try (Connection connection = getConnection())
-    {
-      if (connection == null || connection.isClosed())
-      {
-        throw new SQLException(
-            "Failed to establish a connection to the database.");
-      }
-    }
-
-    // Check if the property exists
-    Property property = readByID(id);
-    if (property == null)
-    {
-      System.out.println("Property with id " + id + " does not exist.");
-      return false;
-    }
-
-    try (Connection connection = getConnection())
-    {
-      PreparedStatement statement = connection.prepareStatement(
-          "SELECT * FROM booking WHERE propertyID = ? AND (start_date, end_date) OVERLAPS (?, ?)");
-      statement.setInt(1, id);
-      statement.setDate(2, startDate);
-      statement.setDate(3, endDate);
-      ResultSet resultSet = statement.executeQuery();
-      // If the result set is empty, the property is available
-      return !resultSet.next();
-    }
-  }
 }

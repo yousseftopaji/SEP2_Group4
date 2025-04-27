@@ -43,7 +43,7 @@ public class SpecifyDatesController
     });
   }
 
-  public void onSubmitButtonClicked()
+  public void onProceedButtonClicked()
   {
     specifyDatesVM.setStartDate(startDate.getValue());
     specifyDatesVM.setEndDate(endDate.getValue());
