@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class Server
 {
-  final static int PORT = 8080;
+  private final static int PORT = 8080;
 
   public static void main(String[] args) throws SQLException, IOException
   {

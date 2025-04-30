@@ -11,6 +11,13 @@ import javafx.scene.control.TableView;
 import dtos.Property;
 import ui.viewHandler.ViewHandler;
 
+/**
+ * Controller for the PropertyList view.
+ * This class handles the logic for displaying a list of properties.
+ *
+ * @author Group 4
+ * @version 1.0
+ */
 public class PropertyListController
 {
   @FXML private TableView<Property> table;
@@ -25,18 +32,34 @@ public class PropertyListController
   private ObjectProperty<Property> selectedProperty;
   private ViewHandler viewHandler;
 
+  /**
+   * Constructor for PropertyListController.
+   */
   public PropertyListController()
   {
   }
 
+  /**
+   * Initializes the PropertyListController.
+   * This method is called by the JavaFX framework to initialize the controller.
+   *
+   * @param propertyListVM The ViewModel for the PropertyList view.
+   * @param viewHandler The ViewHandler for handling view changes.
+   */
   public void initialize(PropertyListVM propertyListVM, ViewHandler viewHandler)
-      throws Exception
   {
     this.propertyListVM = propertyListVM;
     this.viewHandler = viewHandler;
 
     // Bind the TableView to the ViewModel
-    table.setItems(propertyListVM.getPropertyList());
+    try
+    {
+      table.setItems(propertyListVM.getPropertyList());
+    }
+    catch (Exception e)
+    {
+      throw new RuntimeException(e);
+    }
 
     // Set up the columns
     locationColumn.setCellValueFactory(
@@ -54,6 +77,12 @@ public class PropertyListController
     errorMsg.textProperty().bind(propertyListVM.getErrorMsgProperty());
   }
 
+  /**
+   * Called when the select button is pressed.
+   * This method opens the booking view for the selected property.
+   *
+   * @throws Exception If an error occurs while opening the booking view.
+   */
   public void onSelectProperty() throws Exception
   {
     if (propertyListVM.getSelectedProperty().get() != null)
@@ -62,6 +91,10 @@ public class PropertyListController
     }
   }
 
+  /**
+   * Called when the back button is pressed.
+   * This method opens the specify dates view.
+   */
   public void onBack()
   {
     viewHandler.openSpecifyDatesView();

@@ -19,6 +19,7 @@ public class ViewHandler
   private SpecifyDatesVM specifyDatesVM;
   private PropertyListVM propertyListVM;
   private BookingVM bookingVM;
+  private static AuthenticationService authService = new AuthenticationServiceImpl();
   private Stage mainStage;
 
 
@@ -27,6 +28,7 @@ public class ViewHandler
     specifyDatesVM = new SpecifyDatesVM();
     propertyListVM = new PropertyListVM();
     bookingVM = new BookingVM();
+    this.
     mainStage = new Stage();
   }
 
@@ -114,5 +116,13 @@ public class ViewHandler
     {
       e.printStackTrace();
     }
+  }
+
+  public enum ViewType {
+    WELCOME,
+    REGISTER,
+    LOGIN,
+    PROPERTY_LIST,
+    BOOKING,
   }
 }

@@ -7,6 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import ui.viewHandler.ViewHandler;
 
+/**
+ * The BookingController class is responsible for handling the user interface
+ * interactions related to booking a property. It binds the UI components to the
+ * ViewModel and manages the actions performed by the user.
+ *
+ * @author Group 4
+ * @version 1.0
+ */
 public class BookingController
 {
   //I want to add an image to the property
@@ -22,10 +30,19 @@ public class BookingController
   private BookingVM bookingVM;
   private ViewHandler viewHandler;
 
+  /**
+   * Default constructor for BookingController.
+   */
   public BookingController()
   {
   }
 
+  /**
+   * Initializes the BookingController with the provided BookingVM and ViewHandler.
+   *
+   * @param bookingVM  The ViewModel for booking.
+   * @param viewHandler The ViewHandler for managing views.
+   */
   public void initialize(BookingVM bookingVM, ViewHandler viewHandler)
   {
     this.bookingVM = bookingVM;
@@ -39,17 +56,31 @@ public class BookingController
     bookingDateField.setValue(bookingVM.getEndDate().toLocalDate());
   }
 
+  /**
+   * Sets the booking date in the ViewModel when the user selects a new date.
+   * Called when the user changes the date in the DatePicker.
+   */
   public void changeEndDate()
   {
     bookingVM.onChangeEndDate(bookingDateField.getValue());
     newEndDateAvailabilityField.textProperty().bind(bookingVM.getAvailabilityProperty());
   }
 
+  /**
+   * Back button action handler.
+   * From the BookingController, returns to the PropertyListView.
+   * Called when the user changes the date in the DatePicker.
+   */
   public void onBackButtonClicked()
   {
     viewHandler.openPropertyListView();
   }
 
+  /**
+   * Submit button action handler.
+   * From the BookingController, creates a booking.
+   * Called when the user clicks the submit button.
+   */
   public void onSubmitButtonClicked()
   {
     bookingVM.createBooking();
