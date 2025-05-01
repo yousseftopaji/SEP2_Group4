@@ -1,5 +1,6 @@
 package networking;
 
+import dtos.LoginRequest;
 import model.booking.BookingModel;
 import networking.bookingHandler.BookingHandler;
 import networking.bookingHandler.BookingHandlerImpl;
@@ -101,6 +102,13 @@ public class MainSocketHandler implements Runnable
               // Create the booking
               bookingHandler.createBooking(propertyId, startDate, endDate,
                   username);
+            }
+            case "loginRequest" ->
+            {
+              String request = in.readLine();
+
+              // Parse the JSON request
+              LoginRequest loginRequest = JsonParser.parseLoginRequest(request);
             }
           }
         }

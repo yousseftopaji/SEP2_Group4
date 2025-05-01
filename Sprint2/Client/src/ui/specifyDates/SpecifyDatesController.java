@@ -48,6 +48,6 @@ public class SpecifyDatesController
     specifyDatesVM.setStartDate(startDate.getValue());
     specifyDatesVM.setEndDate(endDate.getValue());
     viewHandler.setDates(Date.valueOf(startDate.getValue()), Date.valueOf(endDate.getValue()));
-    viewHandler.openPropertyListView();
+    viewHandler.showView(ViewHandler.ViewType.PROPERTY_LIST);
   }
 }

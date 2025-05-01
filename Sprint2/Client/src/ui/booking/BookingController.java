@@ -73,7 +73,7 @@ public class BookingController
    */
   public void onBackButtonClicked()
   {
-    viewHandler.openPropertyListView();
+    viewHandler.showView(ViewHandler.ViewType.PROPERTY_LIST);
   }
 
   /**

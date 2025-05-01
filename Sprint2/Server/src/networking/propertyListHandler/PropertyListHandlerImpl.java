@@ -49,7 +49,6 @@ public class PropertyListHandlerImpl implements PropertyChangeListener, Property
   }
 
 
-
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     // Handle the property change event

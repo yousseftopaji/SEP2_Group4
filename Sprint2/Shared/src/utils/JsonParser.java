@@ -2,6 +2,7 @@ package utils;
 
 import com.google.gson.Gson;
 import dtos.Booking;
+import dtos.LoginRequest;
 import dtos.Property;
 import dtos.PropertyList;
 
@@ -50,5 +51,17 @@ public class JsonParser
   {
     Gson gson = new Gson();
     return gson.fromJson(jsonResponse, Booking.class);
+  }
+
+  public static String loginRequestToJson(LoginRequest loginRequest)
+  {
+    Gson gson = new Gson();
+    return gson.toJson(loginRequest);
+  }
+
+  public static LoginRequest parseLoginRequest(String request)
+  {
+    Gson gson = new Gson();
+    return gson.fromJson(request, LoginRequest.class);
   }
 }

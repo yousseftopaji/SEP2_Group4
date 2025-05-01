@@ -1,6 +1,7 @@
 package networking;
 
 import dtos.Booking;
+import dtos.LoginRequest;
 import utils.JsonParser;
 import dtos.Property;
 import dtos.PropertyList;

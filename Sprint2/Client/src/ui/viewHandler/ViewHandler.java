@@ -7,20 +7,26 @@ import javafx.stage.Stage;
 import dtos.Property;
 import ui.booking.BookingController;
 import ui.booking.BookingVM;
+import ui.login.LoginCtrl;
+import ui.login.LoginVM;
 import ui.propertyList.PropertyListController;
 import ui.propertyList.PropertyListVM;
+import ui.register.RegisterCtrl;
+import ui.register.RegisterVM;
 import ui.specifyDates.SpecifyDatesController;
 import ui.specifyDates.SpecifyDatesVM;
+import ui.welcome.FrontViewCtrl;
 
 import java.sql.Date;
 
 public class ViewHandler
 {
-  private SpecifyDatesVM specifyDatesVM;
-  private PropertyListVM propertyListVM;
-  private BookingVM bookingVM;
-  private static AuthenticationService authService = new AuthenticationServiceImpl();
-  private Stage mainStage;
+  private final SpecifyDatesVM specifyDatesVM;
+  private final PropertyListVM propertyListVM;
+  private final BookingVM bookingVM;
+  private final RegisterVM registerVM;
+  private final LoginVM loginVM;
+  private final Stage mainStage;
 
 
   public ViewHandler()
@@ -28,14 +34,81 @@ public class ViewHandler
     specifyDatesVM = new SpecifyDatesVM();
     propertyListVM = new PropertyListVM();
     bookingVM = new BookingVM();
-    this.
+    registerVM = new RegisterVM();
+    loginVM = new LoginVM();
     mainStage = new Stage();
   }
 
   public void start()
   {
-    openSpecifyDatesView();
+    showView(ViewType.WELCOME);
     mainStage.show();
+  }
+
+  public void showView(ViewType view){
+    try{
+      switch (view){
+        case WELCOME -> showFrontView();
+        case REGISTER -> showRegisterView();
+        case LOGIN -> showLoginView();
+        case PROPERTY_LIST -> openPropertyListView();
+        case BOOKING -> openBookingView(propertyListVM.getSelectedProperty().get());
+        case SPECIFY_DATES -> openSpecifyDatesView();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private Scene frontScene;
+  public void showFrontView() throws Exception
+  {
+    if (frontScene == null)
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(
+          "/ui/welcome/FrontViewCtrl.fxml"));
+      Parent root = loader.load();
+      FrontViewCtrl frontViewController = loader.getController();
+      frontViewController.initialize(this);
+      frontScene = new Scene(root);
+    }
+    mainStage.setTitle("Welcome");
+    mainStage.setScene(frontScene);
+  }
+
+  private Scene registerScene;
+  public void showRegisterView() throws Exception
+  {
+    if (registerScene == null)
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(
+          "/ui/register/RegisterCtrl.fxml"));
+      Parent root = loader.load();
+      RegisterCtrl registerController = loader.getController();
+      registerController.initialize(registerVM, this);
+      registerScene = new Scene(root);
+    }
+    mainStage.setTitle("Register");
+    mainStage.setScene(registerScene);
+  }
+
+  private Scene loginScene;
+  public void showLoginView() throws Exception
+  {
+    if (loginScene == null)
+    {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(
+          "/ui/login/LoginCtrl.fxml"));
+      Parent root = loader.load();
+      LoginCtrl loginController = loader.getController();
+      loginController.initialize(loginVM, this);
+      loginScene = new Scene(root);
+    }
+    mainStage.setTitle("Login");
+    mainStage.setScene(loginScene);
   }
 
   private Scene specifyDatesScene;
@@ -124,5 +197,6 @@ public class ViewHandler
     LOGIN,
     PROPERTY_LIST,
     BOOKING,
+    SPECIFY_DATES
   }
 }

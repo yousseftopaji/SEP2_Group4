@@ -87,7 +87,7 @@ public class PropertyListController
   {
     if (propertyListVM.getSelectedProperty().get() != null)
     {
-      viewHandler.openBookingView(propertyListVM.getSelectedProperty().get());
+      viewHandler.showView(ViewHandler.ViewType.BOOKING);
     }
   }
 
@@ -97,6 +97,6 @@ public class PropertyListController
    */
   public void onBack()
   {
-    viewHandler.openSpecifyDatesView();
+    viewHandler.showView(ViewHandler.ViewType.SPECIFY_DATES);
   }
 }
