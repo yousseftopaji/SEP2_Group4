@@ -1,4 +1,4 @@
-package model.authentication;
+package services.authentication;
 
 import dtos.LoginRequest;
 import dtos.User;

@@ -8,6 +8,7 @@ import startup.viewHandler.ViewHandler;
 
 public class RegisterCtrl
 {
+  @FXML private TextField usernameField;
   @FXML private TextField emailField;
   @FXML private TextField passwordField;
   @FXML private TextField repeatField;
