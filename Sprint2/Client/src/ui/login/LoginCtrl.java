@@ -3,7 +3,7 @@ package ui.login;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import ui.viewHandler.ViewHandler;
+import startup.viewHandler.ViewHandler;
 
 public class LoginCtrl
 {

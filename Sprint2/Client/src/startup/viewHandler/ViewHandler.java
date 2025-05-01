@@ -1,4 +1,4 @@
-package ui.viewHandler;
+package startup.viewHandler;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

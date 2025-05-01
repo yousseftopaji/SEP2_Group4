@@ -2,7 +2,7 @@ package ui.welcome;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import ui.viewHandler.ViewHandler;
+import startup.viewHandler.ViewHandler;
 
 public class FrontViewCtrl
 {

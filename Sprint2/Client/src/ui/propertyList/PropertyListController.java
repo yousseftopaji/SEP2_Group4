@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import dtos.Property;
-import ui.viewHandler.ViewHandler;
+import startup.viewHandler.ViewHandler;
 
 /**
  * Controller for the PropertyList view.

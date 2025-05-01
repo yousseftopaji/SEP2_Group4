@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import ui.viewHandler.ViewHandler;
+import startup.viewHandler.ViewHandler;
 
 /**
  * The BookingController class is responsible for handling the user interface
