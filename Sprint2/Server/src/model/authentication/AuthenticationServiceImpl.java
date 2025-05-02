@@ -1,4 +1,4 @@
-package services.authentication;
+package model.authentication;
 
 import dtos.LoginRequest;
 import dtos.User;
@@ -120,7 +120,7 @@ public class AuthenticationServiceImpl implements AuthenticationService
     }
     if (!containsUpperCaseAndLowerCase(newPassword))
     {
-      return "Passwords must have atleast one upper and atleast one lower character.";
+      return "Passwords must have at least one upper and at least one lower character.";
     }
     if (!containsNumberLetterAndSymbol(newPassword))
     {

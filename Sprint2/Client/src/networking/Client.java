@@ -139,4 +139,27 @@ public class Client
     propertyChangeSupport.firePropertyChange("bookingCreated", null,
         newBooking);
   }
+
+  public void sendRequest(String action, String json)
+  {
+    // Send the request to the server
+    out.println(action);
+    out.println(json);
+    out.flush();
+
+    // Read the response from the server
+    String jsonResponse = null;
+    try
+    {
+      jsonResponse = in.readLine();
+    }
+    catch (IOException e)
+    {
+      throw new RuntimeException(e);
+    }
+
+    // Notify the listeners about the new properties
+    propertyChangeSupport.firePropertyChange("getAllProperties", null,
+        jsonResponse);
+  }
 }
